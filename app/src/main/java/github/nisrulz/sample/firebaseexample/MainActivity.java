@@ -1,5 +1,7 @@
 package github.nisrulz.sample.firebaseexample;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
@@ -19,20 +22,21 @@ public class MainActivity extends AppCompatActivity {
   // Create an object of FirebaseRemoteConfig
   FirebaseRemoteConfig remoteConfig;
 
+  Toolbar toolbar;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
 
     // Init FirebaseRemoteConfig
     remoteConfig = FirebaseRemoteConfig.getInstance();
 
     // Note : Developer mode is enabled so as to make sure that the cache gets refreshed often
-    FirebaseRemoteConfigSettings remoteConfigSettings = new FirebaseRemoteConfigSettings.Builder()
-        .setDeveloperModeEnabled(true)
-        .build();
+    FirebaseRemoteConfigSettings remoteConfigSettings =
+        new FirebaseRemoteConfigSettings.Builder().setDeveloperModeEnabled(true).build();
     remoteConfig.setConfigSettings(remoteConfigSettings);
 
     // Set Defaults
@@ -42,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
     defaults.put("color_primary", "#3F51B5");
     defaults.put("color_primary_dark", "#303F9F");
     remoteConfig.setDefaults(defaults);
-
 
     // Configure remote config to fetch updated configurations
     // cache expiration in seconds
@@ -54,22 +57,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // fetch
-    remoteConfig.fetch(cacheExpiration)
-        .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-          @Override
-          public void onComplete(Task<Void> task) {
-            if (task.isSuccessful()) {
-              // task successful. Activate the fetched data
-              remoteConfig.activateFetched();
+    remoteConfig.fetch(cacheExpiration).addOnCompleteListener(this, new OnCompleteListener<Void>() {
+      @Override
+      public void onComplete(Task<Void> task) {
+        if (task.isSuccessful()) {
+          // task successful. Activate the fetched data
+          remoteConfig.activateFetched();
 
-              //update views?
-              updateViews();
-            } else {
-              //task failed
+          //update views?
+          updateViews();
+
+          // update the toolbar
+          if (toolbar != null) {
+            toolbar.setBackgroundColor(Color.parseColor(remoteConfig.getString("color_primary")));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+              getWindow().setStatusBarColor(
+                  Color.parseColor(remoteConfig.getString("color_primary_dark")));
             }
           }
-        });
 
+        }
+        else {
+          //task failed
+        }
+      }
+    });
 
     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
     fab.setOnClickListener(new View.OnClickListener() {
@@ -83,8 +95,13 @@ public class MainActivity extends AppCompatActivity {
   }
 
   private void updateViews() {
-    // TODO: 9/29/16 Update the view
+    // check whether promo is on
+    String isHappyString = remoteConfig.getString("is_happy");
+    String isSadString = remoteConfig.getString("is_sad");
+
+    Toast.makeText(this, isHappyString + "\n" + isSadString, Toast.LENGTH_LONG).show();
   }
+
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
