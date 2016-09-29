@@ -5,11 +5,14 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 import com.google.firebase.crash.FirebaseCrash;
+
+import static android.content.ContentValues.TAG;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +30,11 @@ public class MainActivity extends AppCompatActivity {
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
+
+        // Log that crash button was clicked. This version of Crash.log() will include the
+        // message in the crash report as well as show the message in logcat.
+        FirebaseCrash.logcat(Log.INFO, TAG, "Crash button clicked");
+
         Snackbar.make(view, "Cause a Runtime Exception ?", Snackbar.LENGTH_LONG)
             .setAction("Yes", new View.OnClickListener() {
               @Override
@@ -38,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
                   Toast.makeText(MainActivity.this, "Runtime Exception caused and caught",
                       Toast.LENGTH_SHORT).show();
                   // Report the crash
+                  FirebaseCrash.logcat(Log.ERROR, TAG, "RuntimeException caught");
                   FirebaseCrash.report(e);
                 }
               }
