@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +32,14 @@ public class MainActivity extends AppCompatActivity {
         .setDeveloperModeEnabled(true)
         .build();
     remoteConfig.setConfigSettings(remoteConfigSettings);
+
+    // Set Defaults
+    HashMap<String, Object> defaults = new HashMap<>();
+    defaults.put("is_happy", "Very Happy :D");
+    defaults.put("is_sad", "Sad :(");
+    defaults.put("color_primary", "#3F51B5");
+    defaults.put("color_primary_dark", "#303F9F");
+    remoteConfig.setDefaults(defaults);
 
 
     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
