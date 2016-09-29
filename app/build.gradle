@@ -29,6 +29,8 @@ dependencies {
   testCompile 'junit:junit:4.12'
 
   // firebase analytics
+  // our application will automatically begin tracking default events from our application for things
+  // such as opening the app, device information, region and other standard data.
   compile 'com.google.firebase:firebase-core:9.6.1'
 }
 
