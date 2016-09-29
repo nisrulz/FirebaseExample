@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import java.util.HashMap;
@@ -42,6 +44,33 @@ public class MainActivity extends AppCompatActivity {
     remoteConfig.setDefaults(defaults);
 
 
+    // Configure remote config to fetch updated configurations
+    // cache expiration in seconds
+    long cacheExpiration = 3600;
+
+    //expire the cache immediately for development mode.
+    if (remoteConfig.getInfo().getConfigSettings().isDeveloperModeEnabled()) {
+      cacheExpiration = 0;
+    }
+
+    // fetch
+    remoteConfig.fetch(cacheExpiration)
+        .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+          @Override
+          public void onComplete(Task<Void> task) {
+            if (task.isSuccessful()) {
+              // task successful. Activate the fetched data
+              remoteConfig.activateFetched();
+
+              //update views?
+              updateViews();
+            } else {
+              //task failed
+            }
+          }
+        });
+
+
     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -51,6 +80,10 @@ public class MainActivity extends AppCompatActivity {
             .show();
       }
     });
+  }
+
+  private void updateViews() {
+    // TODO: 9/29/16 Update the view
   }
 
   @Override
