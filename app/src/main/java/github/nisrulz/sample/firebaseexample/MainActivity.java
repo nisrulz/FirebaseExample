@@ -29,9 +29,22 @@ public class MainActivity extends AppCompatActivity {
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-            .setAction("Action", null)
+        Snackbar.make(view, "Sending Analytics data", Snackbar.LENGTH_LONG)
+            .setAction("OK", null)
             .show();
+
+        // Log event
+        firebaseAnalytics.logEvent("checkout_complete", null);
+
+        // Log parametrized event
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "1");
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "Pizza");
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+
+        // Log User Property
+        firebaseAnalytics.setUserProperty("favourite_food", "Pizza");
       }
     });
   }
