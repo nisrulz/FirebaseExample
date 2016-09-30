@@ -10,6 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -55,7 +57,39 @@ public class MainActivity extends AppCompatActivity {
       @Override
       public void onCancelled(DatabaseError error) {
         // Failed to read value
-        Log.w(TAG, "Failed to read value.", error.toException());
+        showToastAndLog("Failed to read value." + error.toException());
+      }
+    });
+
+    // get reference to key
+    final DatabaseReference myKeyValueRef = database.getReference("KeyValue");
+    myKeyValueRef.addChildEventListener(new ChildEventListener() {
+      @Override
+      public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+        String value = dataSnapshot.getValue(String.class);
+        showToastAndLog("Child Added : " + value);
+      }
+
+      @Override
+      public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+        String value = dataSnapshot.getValue(String.class);
+        showToastAndLog("Child Changed : " + value);
+      }
+
+      @Override
+      public void onChildRemoved(DataSnapshot dataSnapshot) {
+        String value = dataSnapshot.getValue(String.class);
+        showToastAndLog("Child Removed : " + value);
+      }
+
+      @Override
+      public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+      }
+
+      @Override
+      public void onCancelled(DatabaseError databaseError) {
+
       }
     });
 
@@ -70,6 +104,11 @@ public class MainActivity extends AppCompatActivity {
         myRef.setValue("Hello, World!");
       }
     });
+  }
+
+  private void showToastAndLog(String data) {
+    Log.d(TAG, data);
+    Toast.makeText(MainActivity.this, data, Toast.LENGTH_SHORT).show();
   }
 
   @Override
