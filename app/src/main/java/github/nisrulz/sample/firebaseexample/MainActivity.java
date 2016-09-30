@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.google.firebase.database.ChildEventListener;
@@ -17,6 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +30,11 @@ public class MainActivity extends AppCompatActivity {
   // declare firebase database
   FirebaseDatabase database;
 
+  // Declare listview and arraylist
+  ListView listview;
+  ArrayList<String> data;
+  ArrayAdapter<String> adapter;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -36,6 +44,12 @@ public class MainActivity extends AppCompatActivity {
 
     // Init textview
     txt_hello = (TextView) findViewById(R.id.txt_hello);
+
+    // Init info for listview
+    listview = (ListView) findViewById(R.id.listview);
+    data = new ArrayList<>();
+    adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data);
+    listview.setAdapter(adapter);
 
     // Init firebase database
     database = FirebaseDatabase.getInstance();
@@ -68,6 +82,10 @@ public class MainActivity extends AppCompatActivity {
       public void onChildAdded(DataSnapshot dataSnapshot, String s) {
         String value = dataSnapshot.getValue(String.class);
         showToastAndLog("Child Added : " + value);
+
+        // modify listview
+        data.add(value);
+        adapter.notifyDataSetChanged();
       }
 
       @Override

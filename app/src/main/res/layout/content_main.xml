@@ -16,9 +16,16 @@
     >
 
   <TextView
+      android:id="@+id/txt_hello"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="Hello World!"
-      android:id="@+id/txt_hello"
+      />
+
+  <ListView
+      android:id="@+id/listview"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/txt_hello"
       />
 </RelativeLayout>
