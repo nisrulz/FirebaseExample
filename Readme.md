@@ -1,6 +1,8 @@
 ![Image](https://github.com/nisrulz/FirebaseExample/blob/master/img/github_banner.png)
 
-:fire: Simplistic example app demonstrating using latest Firebase features. Checkout branches for each feature. 
+:fire: Simplistic example app demonstrating using latest Firebase features.
+
+Each branch contains commits specific to implementing a particular feature of firebase.
 
 Contributions are always welcome, hoping people will help me in growing this. To contribute, simply open up a PR with the changes.
 
