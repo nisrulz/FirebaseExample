@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
   compileSdkVersion 25
-  buildToolsVersion "25.0.0"
+  buildToolsVersion "25.0.1"
   defaultConfig {
     applicationId "github.nisrulz.sample.firebaseexample"
     minSdkVersion 10
@@ -24,14 +24,14 @@ dependencies {
   androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
     exclude group: 'com.android.support', module: 'support-annotations'
   })
-  compile 'com.android.support:appcompat-v7:25.0.0'
-  compile 'com.android.support:design:25.0.0'
+  compile 'com.android.support:appcompat-v7:25.0.1'
+  compile 'com.android.support:design:25.0.1'
   testCompile 'junit:junit:4.12'
 
   // firebase analytics
   // our application will automatically begin tracking default events from our application for things
   // such as opening the app, device information, region and other standard data.
-  compile 'com.google.firebase:firebase-core:9.8.0'
+  compile 'com.google.firebase:firebase-core:10.0.1'
 }
 
 
