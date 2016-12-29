@@ -1,5 +1,12 @@
 ![Image](/img/github_banner.png)
 
+### Badges/Featured In
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Firebase%20Example-brightgreen.svg?style=flat)](https://android-arsenal.com/details/3/4957#)
+
+### Show some :heart:
+[![GitHub stars](https://img.shields.io/github/stars/nisrulz/FirebaseExample.svg?style=social&label=Star)](https://github.com/nisrulz/FirebaseExample) [![GitHub forks](https://img.shields.io/github/forks/nisrulz/FirebaseExample.svg?style=social&label=Fork)](https://github.com/nisrulz/FirebaseExample/fork) [![GitHub watchers](https://img.shields.io/github/watchers/nisrulz/FirebaseExample.svg?style=social&label=Watch)](https://github.com/nisrulz/FirebaseExample) [![GitHub followers](https://img.shields.io/github/followers/nisrulz.svg?style=social&label=Follow)](https://github.com/nisrulz/FirebaseExample)  
+[![Twitter Follow](https://img.shields.io/twitter/follow/nisrulz.svg?style=social)](https://twitter.com/nisrulz) 
+
 :fire: Simplistic example app demonstrating using latest Firebase features.
 
 Each branch contains commits specific to implementing a particular feature of firebase.
