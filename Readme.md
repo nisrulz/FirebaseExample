@@ -14,7 +14,9 @@ Each branch contains commits specific to implementing a particular feature of fi
 Contributions are always welcome, hoping people will help me in growing this. To contribute, simply open up a PR with the changes.
 
 
-> If you found this example helpful or you learned something today and want to thank me, consider [buying me a cup of](https://www.paypal.me/nisrulz) :coffee:
+> If you found these examples helpful or you learned something from their source code and want to thank me, consider buying me a cup of :coffee:
+>  + [PayPal](https://www.paypal.me/nisrulz/5)
+>  + Bitcoin Address: 13PjuJcfVW2Ad81fawqwLtku4bZLv1AxCL
 
 License
 =======
