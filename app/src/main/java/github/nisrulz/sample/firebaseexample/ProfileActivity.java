@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -38,8 +39,8 @@ public class ProfileActivity extends AppCompatActivity {
     FirebaseUser user = firebaseAuth.getCurrentUser();
 
     //initializing views
-    textViewUserEmail = (TextView) findViewById(R.id.textViewUserEmail);
-    buttonLogout = (Button) findViewById(R.id.buttonLogout);
+    textViewUserEmail = findViewById(R.id.textViewUserEmail);
+    buttonLogout = findViewById(R.id.buttonLogout);
 
     //displaying logged in user name
     textViewUserEmail.setText("Welcome\n" + user.getEmail());

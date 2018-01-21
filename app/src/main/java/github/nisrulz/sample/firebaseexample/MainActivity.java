@@ -7,13 +7,12 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
 
     //initializing firebase auth object
@@ -53,10 +52,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //initializing views
-    editTextEmail = (EditText) findViewById(R.id.editTextEmail);
-    editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-
-    buttonSignup = (Button) findViewById(R.id.buttonSignup);
+    editTextEmail = findViewById(R.id.editTextEmail);
+    editTextPassword = findViewById(R.id.editTextPassword);
+    buttonSignup = findViewById(R.id.buttonSignup);
 
     progressDialog = new ProgressDialog(this);
 
@@ -68,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
       }
     });
 
-    textViewSignin = (TextView) findViewById(R.id.textViewSignin);
+    textViewSignin = findViewById(R.id.textViewSignin);
     textViewSignin.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -113,35 +111,12 @@ public class MainActivity extends AppCompatActivity {
               startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
               Toast.makeText(MainActivity.this, "Successfully registered", Toast.LENGTH_LONG)
                   .show();
-            }
-            else {
+            } else {
               //display some message here
               Toast.makeText(MainActivity.this, "Registration Error", Toast.LENGTH_LONG).show();
             }
             progressDialog.dismiss();
           }
         });
-  }
-
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-    // Inflate the menu; this adds items to the action bar if it is present.
-    getMenuInflater().inflate(R.menu.menu_main, menu);
-    return true;
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    // Handle action bar item clicks here. The action bar will
-    // automatically handle clicks on the Home/Up button, so long
-    // as you specify a parent activity in AndroidManifest.xml.
-    int id = item.getItemId();
-
-    //noinspection SimplifiableIfStatement
-    if (id == R.id.action_settings) {
-      return true;
-    }
-
-    return super.onOptionsItemSelected(item);
   }
 }
