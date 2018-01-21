@@ -64,7 +64,7 @@ public class NotificationUtils extends ContextWrapper {
         // for notification click action, also required on Gingerbread and below
         .setContentIntent(pi);
 
-    getNotificationManager().notify(101, builder.build());
+    getNotificationManager().notify(notificationId, builder.build());
   }
 
   public void sendAndroidChannelNotification(String title, String body, int notificationId) {
