@@ -11,8 +11,37 @@
 
 Each branch contains commits specific to implementing a particular feature of firebase.
 
-Contributions are always welcome, hoping people will help me in growing this. To contribute, simply open up a PR with the changes.
+1. [Authentication](https://github.com/nisrulz/FirebaseExample/tree/auth)
+1. [Crash-Reporting](https://github.com/nisrulz/FirebaseExample/tree/crash-reporting)
+1. [Analytics](https://github.com/nisrulz/FirebaseExample/tree/analytics)
+1. [Firebase Cloud Messaging](https://github.com/nisrulz/FirebaseExample/tree/firebase-cloud-messaging)
+1. [Realtime Database](https://github.com/nisrulz/FirebaseExample/tree/realtime-db)
+1. [Remote Config](https://github.com/nisrulz/FirebaseExample/tree/remote-config)
 
+
+# Pull Requests
+I welcome and encourage all pull requests. It usually will take me within 24-48 hours to respond to any issue or request. Here are some basic rules to follow to ensure timely addition of your request:
+  1. Match coding style (braces, spacing, etc.) This is best achieved using `Reformat Code` feature of Android Studio `CMD`+`Option`+`L` on Mac and `CTRL` + `ALT` + `L` on Linux + Windows .
+  2. If its a feature, bugfix, or anything please only change code to what you specify.
+  3. Please keep PR titles easy to read and descriptive of changes, this will make them easier to merge :)
+  4. Pull requests _must_ be made against `develop` branch. Any other branch (unless specified by the maintainers) will get rejected.
+  5. Check for existing [issues](https://github.com/nisrulz/android-examples/issues) first, before filing an issue.
+  6. Make sure you follow the set standard as all other projects in this repo do
+
+      + Upgrade your gradle wrapper to the one all other apps are using. Use the below command at root of your project
+
+          ```
+          ./gradlew wrapper --gradle-version <version_name>
+          ```
+          i.e `./gradlew wrapper --gradle-version 4.6`
+
+      + Use `ext` variables as defined in [`dependencies.gradle`](/dependencies.gradle), in your `build.gradle` files to make sure all apps are in sync with configurations and dependencies. Take a look [here](/DataBinding/app/build.gradle) and [here](/DataBinding/build.gradle)
+
+      + Use the package name of the format `github.nisrulz.sample.*` where `*` is the example you are adding to the repo. I am trying to follow a set standard in the repo, please adhere to that.
+  7. Have fun!
+
+### Created & Maintained By
+[Nishant Srivastava](https://github.com/nisrulz) ([@nisrulz](https://www.twitter.com/nisrulz))
 
 > If you found these examples helpful or you learned something from their source code and want to thank me, consider buying me a cup of :coffee:
 >  + [PayPal](https://www.paypal.me/nisrulz/5)
