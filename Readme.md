@@ -18,7 +18,6 @@ Each branch contains commits specific to implementing a particular feature of fi
 1. [Realtime Database](https://github.com/nisrulz/FirebaseExample/tree/realtime-db)
 1. [Remote Config](https://github.com/nisrulz/FirebaseExample/tree/remote-config)
 
-
 # Pull Requests
 I welcome and encourage all pull requests. It usually will take me within 24-48 hours to respond to any issue or request. Here are some basic rules to follow to ensure timely addition of your request:
   1. Match coding style (braces, spacing, etc.) This is best achieved using `Reformat Code` feature of Android Studio `CMD`+`Option`+`L` on Mac and `CTRL` + `ALT` + `L` on Linux + Windows .
@@ -39,6 +38,9 @@ I welcome and encourage all pull requests. It usually will take me within 24-48 
 
       + Use the package name of the format `github.nisrulz.sample.*` where `*` is the example you are adding to the repo. I am trying to follow a set standard in the repo, please adhere to that.
   7. Have fun!
+  
+# Getting Started
+To be able to run the app or contribute you will need to create a project on [Firebase](https://firebase.google.com/) in order to get the `google-services.json` file that is needed. You can follow the instructions for the same [here](https://firebase.google.com/docs/android/setup). Once you have this file copy it into your project's module folder, typically `app/` and sync the project.
 
 ### Created & Maintained By
 [Nishant Srivastava](https://github.com/nisrulz) ([@nisrulz](https://www.twitter.com/nisrulz))
