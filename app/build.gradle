@@ -1,8 +1,9 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 android {
   compileSdkVersion rootProject.ext.compileSdkVersion
-  
 
   defaultConfig {
     applicationId "github.nisrulz.sample.firebaseexample"
@@ -18,14 +19,21 @@ android {
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
   }
+  compileOptions {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+  }
 }
 
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+  // Kotlin
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+
   // Testing
   testImplementation "junit:junit:$rootProject.ext.junitVersion"
-  androidTestImplementation "androidx.test:runner:$rootProject.ext.testRunnerVersion"
+  androidTestImplementation "androidx.test.ext:junit:$rootProject.ext.junitExtVersion"
   androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.ext.espressoCoreVersion"
 
   // Support
