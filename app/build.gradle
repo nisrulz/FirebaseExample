@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 android {
   compileSdkVersion rootProject.ext.compileSdkVersion
@@ -17,27 +19,30 @@ android {
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
   }
+  compileOptions {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+  }
 }
 
 dependencies {
-
-
   implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+  // Kotlin
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
   // Testing
   testImplementation "junit:junit:$rootProject.ext.junitVersion"
-  androidTestImplementation "androidx.test:runner:$rootProject.ext.testRunnerVersion"
+  androidTestImplementation "androidx.test.ext:junit:$rootProject.ext.junitExtVersion"
   androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.ext.espressoCoreVersion"
 
   // Support
-  implementation "androidx.appcompat:appcompat:1.0.2"
-  implementation "com.google.android.material:material:1.0.0"
-
+  implementation "androidx.appcompat:appcompat:$rootProject.ext.appCompat"
+  implementation "com.google.android.material:material:$rootProject.ext.materialDesign"
 
   // Firebase database
-  implementation "com.google.firebase:firebase-database:16.1.0"
+  implementation "com.google.firebase:firebase-database:19.2.0"
 }
-
 
 // Add to the bottom of the file
 apply plugin: 'com.google.gms.google-services'

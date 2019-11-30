@@ -1,10 +1,6 @@
 package github.nisrulz.sample.firebaseexample;
 
 import android.os.Bundle;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -12,6 +8,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,6 +18,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -63,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     // Read from the database
     myRef.addValueEventListener(new ValueEventListener() {
       @Override
-      public void onDataChange(DataSnapshot dataSnapshot) {
+      public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
         // This method is called once with the initial value and again
         // whenever data at this location is updated.
         String value = dataSnapshot.getValue(String.class);
@@ -72,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
       }
 
       @Override
-      public void onCancelled(DatabaseError error) {
+      public void onCancelled(@NonNull DatabaseError error) {
         // Failed to read value
         showToastAndLog("Failed to read value." + error.toException());
       }
@@ -82,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
     final DatabaseReference myKeyValueRef = database.getReference("KeyValue");
     myKeyValueRef.addChildEventListener(new ChildEventListener() {
       @Override
-      public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+      public void onChildAdded(@NonNull DataSnapshot dataSnapshot, String s) {
         String value = dataSnapshot.getValue(String.class);
         showToastAndLog("Child Added : " + value);
 
@@ -92,24 +95,24 @@ public class MainActivity extends AppCompatActivity {
       }
 
       @Override
-      public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+      public void onChildChanged(@NonNull DataSnapshot dataSnapshot, String s) {
         String value = dataSnapshot.getValue(String.class);
         showToastAndLog("Child Changed : " + value);
       }
 
       @Override
-      public void onChildRemoved(DataSnapshot dataSnapshot) {
+      public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
         String value = dataSnapshot.getValue(String.class);
         showToastAndLog("Child Removed : " + value);
       }
 
       @Override
-      public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+      public void onChildMoved(@NonNull DataSnapshot dataSnapshot, String s) {
 
       }
 
       @Override
-      public void onCancelled(DatabaseError databaseError) {
+      public void onCancelled(@NonNull DatabaseError databaseError) {
 
       }
     });
