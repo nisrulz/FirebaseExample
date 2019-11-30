@@ -24,15 +24,15 @@ dependencies {
 
   // Testing
   testImplementation "junit:junit:$rootProject.ext.junitVersion"
-  androidTestImplementation "androidx.test:runner:$rootProject.ext.testRunnerVersion"
+  androidTestImplementation "androidx.test.ext:junit:$rootProject.ext.junitExtVersion"
   androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.ext.espressoCoreVersion"
 
   // Support
-  implementation "androidx.appcompat:appcompat:1.0.2"
-  implementation "com.google.android.material:material:1.0.0"
+  implementation "androidx.appcompat:appcompat:$rootProject.ext.appCompat"
+  implementation "com.google.android.material:material:$rootProject.ext.materialDesign"
 
   // Firebase remote config
-  implementation "com.google.firebase:firebase-config:16.3.0"
+  implementation "com.google.firebase:firebase-config:19.0.3"
 }
 
 
