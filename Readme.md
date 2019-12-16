@@ -15,8 +15,8 @@ Contributions are always welcome, hoping people will help me in growing this. To
 
 
 > If you found these examples helpful or you learned something from their source code and want to thank me, consider buying me a cup of :coffee:
->  + [PayPal](https://www.paypal.me/nisrulz/5)
->  + Bitcoin Address: 13PjuJcfVW2Ad81fawqwLtku4bZLv1AxCL
+>  + [PayPal](https://www.paypal.me/nisrulz/5usd)
+
 
 License
 =======
